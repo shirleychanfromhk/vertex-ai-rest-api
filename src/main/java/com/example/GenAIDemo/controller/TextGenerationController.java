@@ -20,4 +20,11 @@ public class TextGenerationController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping(value = "/detectFraud")
+    public ResponseEntity<String> analyzSentiment(@RequestBody String input) {
+        String response = textGenerationService.analyzSentiment(input);
+
+        return ResponseEntity.ok(response);
+    }
 }
