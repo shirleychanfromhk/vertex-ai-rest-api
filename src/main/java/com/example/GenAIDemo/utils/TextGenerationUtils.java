@@ -1,6 +1,7 @@
 package com.example.GenAIDemo.utils;
 
 import dev.langchain4j.model.input.PromptTemplate;
+import dev.langchain4j.model.vertexai.VertexAiLanguageModel;
 
 public class TextGenerationUtils {
     public static PromptTemplate dataTraining() {
@@ -24,6 +25,19 @@ public class TextGenerationUtils {
                 """);
 
         return promptTemplate;
+    }
+
+    public static VertexAiLanguageModel modelBuild() {
+        VertexAiLanguageModel model = VertexAiLanguageModel.builder()
+                .endpoint("us-central1-aiplatform.googleapis.com:443")
+                .project("my-genai-project-429014")
+                .location("us-central1")
+                .publisher("google")
+                .modelName("text-bison@001")
+                .maxOutputTokens(20)
+                .build();
+
+        return model;
     }
 
 }
