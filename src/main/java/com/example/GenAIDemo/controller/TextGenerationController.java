@@ -2,7 +2,7 @@ package com.example.GenAIDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,14 +13,14 @@ public class TextGenerationController {
     @Autowired
     TextGenerationService textGenerationService;
 
-    @GetMapping(value = "/interact")
-    public ResponseEntity<String> interactWithGenAi(@RequestBody String questionString) {
+    @PostMapping(value = "/interact")
+    public ResponseEntity<String> interactWithGenAi(
+            @RequestBody String questionString) {
         String response = textGenerationService.interctResponse(questionString);
-
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/detectFraud")
+    @PostMapping(value = "/detectFraud")
     public ResponseEntity<String> analyzSentiment(@RequestBody String input) {
         String response = textGenerationService.analyzSentiment(input);
 
